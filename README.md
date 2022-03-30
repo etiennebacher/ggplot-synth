@@ -90,6 +90,17 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) 
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
+``` r
+my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
+             tr.intake = 1991) +
+  ggplot2::theme_light()
+```
+
+    ## Warning in my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, :
+    ## Argument `Legend.position` doesn't work when `ggplot = TRUE`.
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
 ## Gap plot
 
 **Default**
@@ -98,7 +109,7 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) 
 gaps.plot(dataprep.res = dataprep.out, synth.res = synth.out)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 **Custom**
 
@@ -106,11 +117,12 @@ gaps.plot(dataprep.res = dataprep.out, synth.res = synth.out)
 my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
-my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) +
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
+             tr.intake = 1991) +
   ggplot2::theme_light()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->

@@ -55,6 +55,11 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) +
   ggplot2::theme_light()
 ```
+```{r}
+my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
+             tr.intake = 1991) +
+  ggplot2::theme_light()
+```
 
 
 ## Gap plot
@@ -69,7 +74,8 @@ gaps.plot(dataprep.res = dataprep.out, synth.res = synth.out)
 my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 ```
 ```{r}
-my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) +
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
+             tr.intake = 1991) +
   ggplot2::theme_light()
 ```
 
