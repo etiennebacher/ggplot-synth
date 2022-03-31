@@ -1,7 +1,9 @@
 
 This repository shows how to add an argument `ggplot = TRUE/FALSE` to
 the functions `path.plot()` and `gaps.plot()` in the package `Synth`.
-The functions can be found in `ggplot-synth.R`
+
+The functions can be found in
+[`ggplot-synth.R`](https://github.com/etiennebacher/ggplot-synth/blob/master/ggplot-synth.R).
 
 ## Examples
 
