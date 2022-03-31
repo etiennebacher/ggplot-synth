@@ -96,7 +96,10 @@ With additional arguments:
 
 ``` r
 my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 1991, Ylab = "My outcome", Xlab = "Years", Main = "My plot", Legend = c("First item", "Second item"), ggplot = TRUE) +
-  ggplot2::theme_light()
+  ggplot2::theme_light() +
+  ggplot2::theme(
+    legend.position = "bottom"
+  )
 ```
 
     ## Warning in my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, :
