@@ -57,11 +57,13 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) +
   ggplot2::theme_light()
 ```
+
+With additional arguments: 
 ```{r}
-my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
-             tr.intake = 1991) +
+my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 1991, Ylab = "My outcome", Xlab = "Years", Main = "My plot", Legend = c("First item", "Second item"), ggplot = TRUE) +
   ggplot2::theme_light()
 ```
+
 
 
 ## Gap plot
@@ -75,10 +77,14 @@ gaps.plot(dataprep.res = dataprep.out, synth.res = synth.out)
 ```{r}
 my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 ```
+
 ```{r}
-my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
-             tr.intake = 1991) +
-  ggplot2::theme_light()
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, Z.plot = TRUE, ggplot = TRUE)
 ```
 
+With additional arguments: 
+```{r}
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 1991, Ylab = "My outcome", Xlab = "Years", Main = "My plot", ggplot = TRUE) +
+  ggplot2::theme_light()
+```
 

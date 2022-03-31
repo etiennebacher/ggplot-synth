@@ -12,6 +12,11 @@ my_path_plot <- function(
   Z.plot = FALSE,
   ggplot = FALSE
 ) {
+  if (isTRUE(ggplot)) {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
+    }
+  }
   if (Z.plot == FALSE) {
     if (sum(is.na(dataprep.res$Y1plot)) > 0) {
       stop(
@@ -55,22 +60,17 @@ my_path_plot <- function(
         cex = 4 / 5
       )
     } else {
-      if (!require("ggplot2")) {
-        stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
-      } else {
-        data_plot <- data.frame(
-          x = dataprep.res$tag$time.plot,
-          y = dataprep.res$Y1plot[, 1],
-          y2 = y0plot1[, 1]
-        )
-        my_plot <- ggplot(data_plot, aes(x, y)) +
-          geom_line() +
-          geom_line(aes(y = y2), linetype = "dashed") +
-          labs(title = ifelse(!is.na(Main), Main, "")) +
-          xlab(Xlab) +
-          ylab(Ylab) +
-          ylim(Ylim)
-      }
+      data_plot <- data.frame(
+        x = rep(dataprep.res$tag$time.plot, 2),
+        y = c(dataprep.res$Y1plot[, 1], y0plot1[, 1]),
+        type = rep(Legend, each = length(dataprep.res$tag$time.plot))
+      )
+      my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y, linetype = type)) +
+        ggplot2::geom_line() +
+        ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
+        ggplot2::xlab(Xlab) +
+        ggplot2::ylab(Ylab) +
+        ggplot2::ylim(Ylim)
     }
   }
 
@@ -106,17 +106,16 @@ my_path_plot <- function(
       )
     } else {
       data_plot <- data.frame(
-        x = dataprep.res$tag$time.optimize.ssr,
-        y = z0plot[, 1],
-        y2 = dataprep.res$Z1[, 1]
+        x = rep(dataprep.res$tag$time.optimize.ssr, 2),
+        y = c(z0plot[, 1], dataprep.res$Z1[, 1]),
+        type = rep(Legend, each = length(dataprep.res$tag$time.optimize.ssr))
       )
-      my_plot <- ggplot(data_plot, aes(x, y)) +
-        geom_line() +
-        geom_line(aes(y = y2), linetype = "dashed") +
-        labs(title = ifelse(!is.na(Main), Main, "")) +
-        xlab(Xlab) +
-        ylab(Ylab) +
-        ylim(Ylim)
+      my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y, linetype = type)) +
+        ggplot2::geom_line() +
+        ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
+        ggplot2::xlab(Xlab) +
+        ggplot2::ylab(Ylab) +
+        ggplot2::ylim(Ylim)
     }
   }
 
@@ -130,7 +129,7 @@ my_path_plot <- function(
   } else {
     if (!is.na(tr.intake)) {
       my_plot <- my_plot +
-        geom_vline(xintercept = tr.intake, linetype = "dotted")
+        ggplot2::geom_vline(xintercept = tr.intake, linetype = "dotted")
     }
   }
 
@@ -145,11 +144,21 @@ my_path_plot <- function(
         cex = 6 / 7
       )
     } else {
+      values <- c("solid", "dashed")
+      names(values) <- Legend
       my_plot <- my_plot +
-        scale_linetype_manual(values = Legend)
+        ggplot2::scale_linetype_manual(
+          name = NULL,
+          values = values
+        )
       if (!is.null(Legend.position)) {
         warning("Argument `Legend.position` doesn't work when `ggplot = TRUE`.")
       }
+    }
+  } else {
+    if (isTRUE(ggplot)) {
+      my_plot <- my_plot +
+        theme(legend.position = element_blank())
     }
   }
 
@@ -171,6 +180,11 @@ my_gaps_plot <- function(
   Z.plot = FALSE,
   ggplot = FALSE
 ){
+  if (isTRUE(ggplot)) {
+    if (!requireNamespace("ggplot2", quietly = TRUE)) {
+      stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
+    }
+  }
   if (Z.plot == FALSE) {
     if (sum(is.na(dataprep.res$Y1plot)) > 0) {
       stop(
@@ -205,16 +219,16 @@ my_gaps_plot <- function(
         yaxs = "i"
       )
     } else {
-      if (!require("ggplot2")) {
-        stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
-      } else {
-        data_plot <- data.frame(
-          x = dataprep.res$tag$time.plot,
-          y = gap[, 1]
-        )
-        my_plot <- ggplot(data_plot, aes(x, y)) +
-          geom_line()
-      }
+      data_plot <- data.frame(
+        x = dataprep.res$tag$time.plot,
+        y = gap[, 1]
+      )
+      my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y)) +
+        ggplot2::geom_line() +
+        ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
+        ggplot2::xlab(Xlab) +
+        ggplot2::ylab(Ylab) +
+        ggplot2::ylim(Ylim)
     }
   }
   else {
@@ -242,8 +256,12 @@ my_gaps_plot <- function(
         x = dataprep.res$tag$time.optimize.ssr,
         y = gap[, 1]
       )
-      my_plot <- ggplot(data_plot, aes(x, y)) +
-        geom_line()
+      my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y)) +
+        ggplot2::geom_line() +
+        ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
+        ggplot2::xlab(Xlab) +
+        ggplot2::ylab(Ylab) +
+        ggplot2::ylim(Ylim)
     }
   }
 
@@ -262,11 +280,11 @@ my_gaps_plot <- function(
     )
   } else {
     my_plot <- my_plot +
-      geom_hline(yintercept = 0, linetype = "dashed")
+      ggplot2::geom_hline(yintercept = 0, linetype = "dashed")
 
     if (!is.na(tr.intake)) {
       my_plot <- my_plot +
-        geom_vline(xintercept = tr.intake, linetype = "dotted")
+        ggplot2::geom_vline(xintercept = tr.intake, linetype = "dotted")
     }
 
     return(my_plot)

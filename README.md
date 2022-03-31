@@ -92,9 +92,10 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) 
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
+With additional arguments:
+
 ``` r
-my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
-             tr.intake = 1991) +
+my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 1991, Ylab = "My outcome", Xlab = "Years", Main = "My plot", Legend = c("First item", "Second item"), ggplot = TRUE) +
   ggplot2::theme_light()
 ```
 
@@ -122,9 +123,16 @@ my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
-my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE,
-             tr.intake = 1991) +
-  ggplot2::theme_light()
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, Z.plot = TRUE, ggplot = TRUE)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+With additional arguments:
+
+``` r
+my_gaps_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 1991, Ylab = "My outcome", Xlab = "Years", Main = "My plot", ggplot = TRUE) +
+  ggplot2::theme_light()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
