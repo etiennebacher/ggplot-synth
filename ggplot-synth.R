@@ -16,6 +16,9 @@ my_path_plot <- function(
     if (!requireNamespace("ggplot2", quietly = TRUE)) {
       stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
     }
+    if (!is.null(Legend.position)) {
+      warning("Argument `Legend.position` doesn't work when `ggplot = TRUE`.")
+    }
   }
   if (Z.plot == FALSE) {
     if (sum(is.na(dataprep.res$Y1plot)) > 0) {
@@ -65,12 +68,21 @@ my_path_plot <- function(
         y = c(dataprep.res$Y1plot[, 1], y0plot1[, 1]),
         type = rep(Legend, each = length(dataprep.res$tag$time.plot))
       )
-      my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y, linetype = type)) +
+      values <- c("solid", "dashed")
+      names(values) <- Legend
+      my_plot <- ggplot2::ggplot(
+        data_plot,
+        ggplot2::aes(x, y, linetype = type)
+      ) +
         ggplot2::geom_line() +
         ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
         ggplot2::xlab(Xlab) +
         ggplot2::ylab(Ylab) +
-        ggplot2::ylim(Ylim)
+        ggplot2::ylim(Ylim) +
+        ggplot2::scale_linetype_manual(
+          name = NULL,
+          values = values
+        )
     }
   }
 
@@ -110,12 +122,18 @@ my_path_plot <- function(
         y = c(z0plot[, 1], dataprep.res$Z1[, 1]),
         type = rep(Legend, each = length(dataprep.res$tag$time.optimize.ssr))
       )
+      values <- c("solid", "dashed")
+      names(values) <- Legend
       my_plot <- ggplot2::ggplot(data_plot, ggplot2::aes(x, y, linetype = type)) +
         ggplot2::geom_line() +
         ggplot2::labs(title = ifelse(!is.na(Main), Main, "")) +
         ggplot2::xlab(Xlab) +
         ggplot2::ylab(Ylab) +
-        ggplot2::ylim(Ylim)
+        ggplot2::ylim(Ylim) +
+        ggplot2::scale_linetype_manual(
+          name = NULL,
+          values = values
+        )
     }
   }
 
@@ -143,22 +161,11 @@ my_path_plot <- function(
         lwd = c(2, 2),
         cex = 6 / 7
       )
-    } else {
-      values <- c("solid", "dashed")
-      names(values) <- Legend
-      my_plot <- my_plot +
-        ggplot2::scale_linetype_manual(
-          name = NULL,
-          values = values
-        )
-      if (!is.null(Legend.position)) {
-        warning("Argument `Legend.position` doesn't work when `ggplot = TRUE`.")
-      }
     }
   } else {
     if (isTRUE(ggplot)) {
       my_plot <- my_plot +
-        theme(legend.position = element_blank())
+        theme(legend.position = "none")
     }
   }
 
