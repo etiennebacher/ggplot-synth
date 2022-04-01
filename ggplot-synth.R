@@ -17,7 +17,7 @@ my_path_plot <- function(
       stop("You need to install the package `ggplot2` in order to use the option `ggplot = TRUE`.")
     }
     if (!is.null(Legend.position)) {
-      warning("Argument `Legend.position` doesn't work when `ggplot = TRUE`.")
+      message("Argument `Legend.position` doesn't work when `ggplot = TRUE`.")
     }
   }
   if (Z.plot == FALSE) {

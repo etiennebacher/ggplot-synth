@@ -77,7 +77,6 @@ path.plot(dataprep.res = dataprep.out, synth.res = synth.out)
 my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE)
 ```
 
-    ## Warning in my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, :
     ## Argument `Legend.position` doesn't work when `ggplot = TRUE`.
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
@@ -87,7 +86,6 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, ggplot = TRUE) 
   ggplot2::theme_light()
 ```
 
-    ## Warning in my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, :
     ## Argument `Legend.position` doesn't work when `ggplot = TRUE`.
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
@@ -102,7 +100,6 @@ my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, tr.intake = 199
   )
 ```
 
-    ## Warning in my_path_plot(dataprep.res = dataprep.out, synth.res = synth.out, :
     ## Argument `Legend.position` doesn't work when `ggplot = TRUE`.
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
